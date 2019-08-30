@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './sign-in.scss'
 import FormInput from '../form-input'
 import Button from '../button'
-
+import { signInWithGoogle } from '../../../firebase/firebase'
 class SignIn extends Component {
     state = {
         email: '',
@@ -37,10 +37,10 @@ class SignIn extends Component {
                         label="Password"
                         handleChange={this.handleChange}
                         value={this.state.password} required />
-
-                    <Button type="submit">
-                        Sign In
-                    </Button>
+                    <div className="buttons">
+                        <Button type="submit">Sign In</Button>
+                        <Button onClick={signInWithGoogle} isGoogleSignIn>Sign In With Google</Button>
+                    </div>
                 </form>
             </div>
         )
