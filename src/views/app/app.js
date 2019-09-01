@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import HomePage from '../pages/home'
 import './app.scss'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import ShopPage from '../pages/shop'
 import Header from '../components/header'
 import SignInSignUpPage from '../pages/sign-in-sign-up'
 import { auth, createUserDocument } from '../../firebase/firebase'
 import { connect } from 'react-redux'
 import { setCurrentUser } from '../../redux/user/actions'
+import { getCurrentUser } from '../../redux/reducers'
 class App extends Component {
 
   unsubscribeFromAuth = null
@@ -43,13 +44,18 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route exact path='/shop' component={ShopPage}/>
-          <Route exact path='/signin' component={SignInSignUpPage}/>
+          <Route
+            exact path='/signin'
+            render={(props) => this.props.currentUser ? <Redirect to='/' /> : <SignInSignUpPage {...props} />} />
         </Switch>
       </Router>
     )
   }
 }
 
+const mapStateToProps = state => ({
+  currentUser: getCurrentUser(state)
+})
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -57,5 +63,5 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
    

@@ -1,14 +1,9 @@
-import {
-    applyMiddleware,
-    compose,
-    createStore
-} from 'redux'
-import thunk from 'redux-thunk'
-import logger from 'redux-logger'
+import { createStore } from 'redux'
 import rootReducer from './reducers'
+import middlewares from './middlewares'
 
-const middlewares = [thunk, logger]
+
 export default function configureStore(preloadedState) {
-    const store = createStore(rootReducer, preloadedState, compose(applyMiddleware(...middlewares)))
+    const store = createStore(rootReducer, preloadedState, middlewares)
     return store
 }
