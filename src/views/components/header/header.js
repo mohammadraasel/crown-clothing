@@ -5,8 +5,11 @@ import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import { connect } from 'react-redux'
 import { getCurrentUser } from '../../../redux/reducers'
 import { auth } from '../../../firebase/firebase'
+import CartIcon from '../cart-icon'
+import CartDropdown from '../cart-dropdown'
+import { getIsCartHidden } from '../../../redux/reducers'
 
-function Header({currentUser}) {
+function Header({currentUser, isCartHidden}) {
     return (
         <div className="header">
             <Link className='logo-container' to='/'>
@@ -29,17 +32,20 @@ function Header({currentUser}) {
                             Sign In
                         </Link>
                 }
+                <CartIcon/>
             </div>
+            {
+                !isCartHidden ? <CartDropdown/>:null   
+            }
         </div>
     )
 }
 
 
-const mapStateToProps = state => {
-    return {
-        currentUser: getCurrentUser(state) 
-    }
-}
+const mapStateToProps = state => ({
+    currentUser: getCurrentUser(state),
+    isCartHidden: getIsCartHidden(state)
+})
 
 
 
