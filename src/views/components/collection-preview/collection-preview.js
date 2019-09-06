@@ -9,8 +9,8 @@ function CollectionPreview({title, items}) {
             <h1 className="title">{title.toUpperCase()}</h1>
             <div className="preview">
                 {
-                    items.map(({id, ...itemProps}) => (
-                        <CollectionItem key={id} {...itemProps} />
+                    items.map((item) => (
+                        <CollectionItem key={item.id} item={item}/>
                     ))
                 }
             </div>

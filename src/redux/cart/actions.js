@@ -1,4 +1,7 @@
-import { TOGGLE_CART_HIDDEN } from './action-types'
+import {
+    TOGGLE_CART_HIDDEN,
+    ADD_ITEM
+} from './action-types'
 
 
 export const toggleCartHidden = () => {
@@ -6,3 +9,12 @@ export const toggleCartHidden = () => {
         dispatch({ type: TOGGLE_CART_HIDDEN })
     }
 }
+
+
+export const addItem = (item) => {
+    return dispatch => {
+        dispatch({type: ADD_ITEM, payload: item})
+    }
+}
+
+
