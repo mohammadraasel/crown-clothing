@@ -3,11 +3,11 @@ import './header.scss'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import { connect } from 'react-redux'
-import { getCurrentUser } from '../../../redux/reducers'
 import { auth } from '../../../firebase/firebase'
 import CartIcon from '../cart-icon'
 import CartDropdown from '../cart-dropdown'
-import { getIsCartHidden } from '../../../redux/reducers'
+import { selectCartHidden } from '../../../redux/cart/selectors'
+import { selectCurrentUser } from '../../../redux/user/selectors'
 
 function Header({currentUser, isCartHidden}) {
     return (
@@ -43,8 +43,8 @@ function Header({currentUser, isCartHidden}) {
 
 
 const mapStateToProps = state => ({
-    currentUser: getCurrentUser(state),
-    isCartHidden: getIsCartHidden(state)
+    currentUser: selectCurrentUser(state),
+    isCartHidden: selectCartHidden(state)
 })
 
 

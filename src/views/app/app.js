@@ -8,7 +8,7 @@ import SignInSignUpPage from '../pages/sign-in-sign-up'
 import { auth, createUserDocument } from '../../firebase/firebase'
 import { connect } from 'react-redux'
 import { setCurrentUser } from '../../redux/user/actions'
-import { getCurrentUser } from '../../redux/reducers'
+import { selectCurrentUser } from '../../redux/user/selectors'
 class App extends Component {
 
   unsubscribeFromAuth = null
@@ -54,7 +54,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: getCurrentUser(state)
+  currentUser: selectCurrentUser(state)
 })
 
 const mapDispatchToProps = dispatch => {

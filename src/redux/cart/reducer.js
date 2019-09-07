@@ -28,9 +28,3 @@ const cartReducer = (state = initialState, {type, payload}) => {
 }
 
 export default cartReducer
-
-
-export const cartActions = {
-    getIsCartHidden: state => state.hidden,
-    getCartItems: state => state.cartItems
-}
