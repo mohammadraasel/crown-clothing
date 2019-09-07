@@ -31,5 +31,6 @@ export default cartReducer
 
 
 export const cartActions = {
-    getIsCartHidden : state => state.hidden
+    getIsCartHidden: state => state.hidden,
+    getCartItems: state => state.cartItems
 }

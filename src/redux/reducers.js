@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
 
 export const getCurrentUser = state => state.user.currentUser
 export const getIsCartHidden = state => cartActions.getIsCartHidden(state.cart)
+export const getCartItems = state => cartActions.getCartItems(state.cart)
 
 
 export default rootReducer;

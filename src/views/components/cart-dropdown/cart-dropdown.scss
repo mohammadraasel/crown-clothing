@@ -12,10 +12,19 @@
     z-index: 5;
   
     .cart-items {
-      height: 240px;
+      height: 280px;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
+      
+      &::-webkit-scrollbar {
+        width: 6px;
+        background-color: rgb(215, 222, 228);
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #2a2a2bc4;
+      }
+      
     }
   
     button {

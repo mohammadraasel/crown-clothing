@@ -4,6 +4,15 @@
 body{
     font-family: 'Roboto', sans-serif;
     padding: 20px 80px;
+    
+    &::-webkit-scrollbar {
+        width: 8px;
+        background-color: rgb(215, 222, 228);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #2a2a2bc4;
+        border-radius: 5px;
+    }
 }
 
 a{
