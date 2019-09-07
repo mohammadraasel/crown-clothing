@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import ShopPage from '../pages/shop'
 import Header from '../components/header'
 import SignInSignUpPage from '../pages/sign-in-sign-up'
+import CheckoutPage from '../pages/checkout'
 import { auth, createUserDocument } from '../../firebase/firebase'
 import { connect } from 'react-redux'
 import { setCurrentUser } from '../../redux/user/actions'
@@ -44,6 +45,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage}/>
           <Route exact path='/shop' component={ShopPage}/>
+          <Route exact path='/checkout' component={CheckoutPage}/>
           <Route
             exact path='/signin'
             render={(props) => this.props.currentUser ? <Redirect to='/' /> : <SignInSignUpPage {...props} />} />
