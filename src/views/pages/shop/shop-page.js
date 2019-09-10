@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CollectionOverview from '../../components/collections-overview'
+import CollectionPage from '../collection'
+import { Route } from 'react-router-dom'
 
-
-export class ShopPage extends Component {
-    
-    render() {
-        return (
-            <div className="shop-page">
-                <CollectionOverview/>
-            </div>
-        )
-    }
+function ShopPage({match}) {
+    return (
+        <div className="shop-page">
+            <Route exact path={`${match.path}`} component={CollectionOverview}/>
+            <Route exact path={`${match.path}/:collectionId`} component={CollectionPage}/>
+        </div>
+    )
 }
 
 
