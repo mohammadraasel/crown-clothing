@@ -1,12 +1,15 @@
 import React from 'react'
 import './collection-preview.scss'
 import CollectionItem from '../collection-item'
+import { withRouter } from 'react-router-dom'
 
 
-function CollectionPreview({title, items}) {
+function CollectionPreview({title, items, history, match}) {
     return (
         <div className="collection-preview">
-            <h1 className="title">{title.toUpperCase()}</h1>
+            <h1
+                onClick={()=>history.push(`${match.url}/${title.toLowerCase()}`)}
+                className="title">{title.toUpperCase()}</h1>
             <div className="preview">
                 {
                     items
@@ -20,4 +23,4 @@ function CollectionPreview({title, items}) {
     )
 }   
 
-export default CollectionPreview
+export default withRouter(CollectionPreview)

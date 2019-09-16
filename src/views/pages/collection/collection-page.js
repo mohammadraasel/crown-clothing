@@ -3,7 +3,7 @@ import CollectionItem from '../../components/collection-item'
 import React from 'react'
 import { connect } from 'react-redux'
 import {selectCollection} from '../../../redux/shop/selectors'
-
+import WithSpinner from '../../components/spinner'
 function CollectionPage({collection:{items, title} }) {
     return (
         <div className='collection-page'>
@@ -22,4 +22,4 @@ const mapStateToProps = (state, ownProps) => ({
     collection: selectCollection(ownProps.match.params.collectionId)(state)
 })
 
-export default connect(mapStateToProps)(CollectionPage)
+export default WithSpinner(connect(mapStateToProps)(CollectionPage)) 

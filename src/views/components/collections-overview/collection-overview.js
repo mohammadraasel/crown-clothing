@@ -2,7 +2,7 @@ import './collection-overview.scss'
 import { connect } from 'react-redux'
 import CollectionPreview from '../collection-preview'
 import { selectCollectionsForOverview } from '../../../redux/shop/selectors'
-
+import WithSpinner from '../spinner'
 import React from 'react'
 
 function CollectionOverview({ collections }) {
@@ -21,5 +21,5 @@ const mapStateToProps = state => ({
     collections: selectCollectionsForOverview(state)
 })
 
-export default connect(mapStateToProps)(CollectionOverview) 
+export default WithSpinner(connect(mapStateToProps)(CollectionOverview)) 
 

@@ -36,8 +36,6 @@ class App extends Component {
     this.unsubscribeFromAuth()
   }
 
-
-
   render() {
     return (
       <Router>
