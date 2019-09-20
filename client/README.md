@@ -1,4 +1,3 @@
-You can see [Live Demo](https://re-clothig.herokuapp.com/).
 
 ## Available Scripts
 
