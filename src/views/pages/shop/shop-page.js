@@ -2,23 +2,13 @@ import React, { Component } from 'react'
 import CollectionOverview from '../../components/collections-overview'
 import CollectionPage from '../collection'
 import { Route } from 'react-router-dom'
-import { firestore, convertCollectionsSnapshopToMap } from '../../../firebase/firebase'
 import { connect } from 'react-redux'
-import { updateCollections } from '../../../redux/shop/actions'
+import {selectIsFetchingCollections, selectIsCollectionsLoaded} from '../../../redux/shop/selectors'
+import { fetchCollections } from '../../../redux/shop/actions'
 class ShopPage extends Component {
-    state = {
-        isLoading: true
-    }
-    unsubscribeFromSnapshot = null
-
+    
     componentDidMount() {
-        const collectionRef = firestore.collection('collections')
-        collectionRef.get()
-            .then(snapshot => {
-                const collectionsMap = convertCollectionsSnapshopToMap(snapshot)
-                this.props.updateCollections(collectionsMap)
-                this.setState({isLoading: false})
-            })
+        this.props.fetchCollections()
     }
 
     render() {
@@ -28,20 +18,25 @@ class ShopPage extends Component {
                 <Route
                     exact
                     path={`${match.path}`}
-                    render={(props) => <CollectionOverview isLoading={this.state.isLoading} {...props} />} />
+                    render={(props) => <CollectionOverview isLoading={this.props.isFethingCollections} {...props} />} />
                 <Route
                     exact
                     path={`${match.path}/:collectionId`}
-                    render={(props) => <CollectionPage isLoading={this.state.isLoading} {...props} />} />
+                    render={(props) => <CollectionPage isLoading={!this.props.isCollectionsLoaded} {...props} />} />
             </div>
         )
     }
 }
 
+const mapStateToProps = state => ({
+    isFethingCollections: selectIsFetchingCollections(state),
+    isCollectionsLoaded: selectIsCollectionsLoaded(state)
+})
+
 const mapDispatchToProps = {
-        updateCollections: updateCollections
+        fetchCollections: fetchCollections
     }
 
 
 
-export default connect(null, mapDispatchToProps)(ShopPage) 
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage) 
