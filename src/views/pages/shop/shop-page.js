@@ -3,7 +3,6 @@ import CollectionOverview from '../../components/collections-overview'
 import CollectionPage from '../collection'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {selectIsFetchingCollections, selectIsCollectionsLoaded} from '../../../redux/shop/selectors'
 import { fetchCollections } from '../../../redux/shop/actions'
 class ShopPage extends Component {
     
@@ -18,20 +17,17 @@ class ShopPage extends Component {
                 <Route
                     exact
                     path={`${match.path}`}
-                    render={(props) => <CollectionOverview isLoading={this.props.isFethingCollections} {...props} />} />
+                    component={CollectionOverview} />
                 <Route
                     exact
                     path={`${match.path}/:collectionId`}
-                    render={(props) => <CollectionPage isLoading={!this.props.isCollectionsLoaded} {...props} />} />
+                    component={ CollectionPage } />
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    isFethingCollections: selectIsFetchingCollections(state),
-    isCollectionsLoaded: selectIsCollectionsLoaded(state)
-})
+
 
 const mapDispatchToProps = {
         fetchCollections: fetchCollections
@@ -39,4 +35,4 @@ const mapDispatchToProps = {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage) 
+export default connect(null, mapDispatchToProps)(ShopPage) 

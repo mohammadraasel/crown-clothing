@@ -1,8 +1,9 @@
 import './collection-overview.scss'
 import { connect } from 'react-redux'
 import CollectionPreview from '../collection-preview'
-import { selectCollectionsForOverview } from '../../../redux/shop/selectors'
+import { selectCollectionsForOverview, selectIsFetchingCollections } from '../../../redux/shop/selectors'
 import WithSpinner from '../spinner'
+import { compose } from 'redux'
 import React from 'react'
 
 function CollectionOverview({ collections }) {
@@ -18,8 +19,12 @@ function CollectionOverview({ collections }) {
 }
 
 const mapStateToProps = state => ({
-    collections: selectCollectionsForOverview(state)
+    collections: selectCollectionsForOverview(state),
+    isLoading: selectIsFetchingCollections(state),
 })
 
-export default WithSpinner(connect(mapStateToProps)(CollectionOverview)) 
+export default compose(
+    connect(mapStateToProps),
+    WithSpinner
+)(CollectionOverview)
 
