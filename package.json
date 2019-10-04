@@ -1,10 +1,6 @@
 {
   "name": "crown-cloths-server",
   "version": "1.0.0",
-  "engines":{
-    "node": "10.15.0",
-    "npm": "6.4.1"
-  },
   "main": "server.js",
   "repository": "https://github.com/mohammadraasel/crown-clothing.git",
   "author": "Mohammad Rasel <'mohammadrasel1221@gmail.com'>",

@@ -1,0 +1,27 @@
+image: node:10-alipine
+
+before_script:
+  - cd client
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - ~/node_modules/
+
+build-pipe:
+  stage: build
+  script:
+    - apk update
+    - apk add yarn
+    - yarn build
+
+deplot-pipe:
+  stage: deploy
+  script:
+    - apk update
+    - apk add ruby-dev ruby-rdoc git curl
+    - gem install dpl
+    - dpl netlify --site $NETLIFY_ID --auth $NETLIFY_TOKEN --prod
